@@ -1,0 +1,3 @@
+-neko tests.n 
+-main TestSuite
+-cp src
