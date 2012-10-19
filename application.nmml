@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<!-- metadata, make sure 'package' is at least 2 segments (ie. com.myproject) -->
-	<app file="hxgunicorn" title="hxgunicorn" main="Main" package="" 
+	<app file="hxgunicorn" title="hxgunicorn" main="Main" package="me.imcj.hxgunicorn" 
 		version="1.0.0" company="CJ" />
 		
 	<!-- output -->

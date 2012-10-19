@@ -1,10 +1,11 @@
 package http.body;
 import errors.StopIteration;
+import io.Reader;
 import nme.utils.ByteArray;
 
 class Body 
 {
-	var reader : IReader;
+	var reader : Reader;
 	var buf : ByteArray;
 	
 	public function new ( reader : IReader ) 
