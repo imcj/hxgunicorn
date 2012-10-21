@@ -18,6 +18,11 @@ class StringIO implements Reader, implements Writer
 	
 	public function new ( ?string : String ) 
 	{
+		initialize ( string );
+	}
+	
+	function initialize ( ?string : String ) : Void
+	{
 		buf = new BytesBuffer( );
 		buf.add ( Bytes.ofString ( string ) );
 		_position = 0;
@@ -83,6 +88,11 @@ class StringIO implements Reader, implements Writer
 		}
 		
 		return result;
+	}
+	
+	public function clear ( ) : Void
+	{
+		initialize ( "" );
 	}
 	
 	function getLength ( ) : Int

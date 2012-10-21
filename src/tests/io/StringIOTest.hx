@@ -23,6 +23,13 @@ class StringIOTest extends TestCase
 		assertEquals ( "abc", b.read ( 3 ) );
 	}
 	
+	public function testClear ( )
+	{
+		var buf : StringIO = new StringIO ( "abc" );
+		buf.clear ( );
+		assertEquals ( "", buf.read ( 4 ) );
+	}
+	
 	public function testReadEmptyBody ( )
 	{
 		assertRead ( "", null, "" );
