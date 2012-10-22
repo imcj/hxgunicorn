@@ -16,6 +16,8 @@ class StringIO implements Reader, implements Writer
 	
 	var bytes : Bytes;
 	
+	public var value ( getValue, null ) : String;
+	
 	public function new ( ?string : String ) 
 	{
 		initialize ( string );
@@ -123,5 +125,14 @@ class StringIO implements Reader, implements Writer
 		}
 		_position += string.length;
 		_length += string.length;
+	}
+	
+	function getValue ( ) : String
+	{
+		var old = position;
+		position = 0;
+		var value = read ( length );
+		position = old;
+		return value;
 	}
 }
