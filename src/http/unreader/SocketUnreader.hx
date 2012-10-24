@@ -1,4 +1,6 @@
 package http.unreader;
+import haxe.io.Bytes;
+import haxe.io.BytesInput;
 import haxe.io.Eof;
 import haxe.io.Input;
 
@@ -17,26 +19,21 @@ class SocketUnreader extends Unreader
 	
 	override public function chunk ( ) : String 
 	{
-		var data : String = "";
-		var buf : String;
-		while ( true ) {
-			try {
-				buf  = socketInput.readLine ( );
-				if ( 0 == buf.length )
-					buf  = socketInput.readLine ( );
-			} catch ( e : Eof ) {
-				trace ( data );
-				return data;
+		var last : Int;
+		var buf : StringBuf = new StringBuf ( );
+		var counter = 0;
+		
+		try {
+			while ( ( last = socketInput.readByte ( ) ) > 0 )
+			{
+				buf.addChar ( last );
+				counter += 1;
+				if ( counter > maxChunk )
+					break;
 			}
-			data += buf;
-			trace ( data.length );
-			trace ( buf.length );
-			if ( 0 == buf.length )
-				break;
-			if ( data.length >= maxChunk )
-				break;
+		} catch ( e : Eof ) {
+			
 		}
-
-		return data;
+		return buf.toString ( );
 	}
 }
