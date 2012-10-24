@@ -22,16 +22,21 @@ class SocketUnreader extends Unreader
 		while ( true ) {
 			try {
 				buf  = socketInput.readLine ( );
+				if ( 0 == buf.length )
+					buf  = socketInput.readLine ( );
 			} catch ( e : Eof ) {
+				trace ( data );
 				return data;
 			}
 			data += buf;
+			trace ( data.length );
+			trace ( buf.length );
 			if ( 0 == buf.length )
 				break;
 			if ( data.length >= maxChunk )
 				break;
 		}
-		
+
 		return data;
 	}
 }
